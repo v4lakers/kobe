@@ -76,6 +76,7 @@ The marginal distribution of the second explanatory variable, shots taken by Kob
 ## Analyzing Assists vs. Margin of Victory 
 
 ``` r
+# Scatter Plot
 scatter.smooth(kobe$Assists, kobe$Margin,
                main = "Margin of Victory vs Assist Total",
                evaluation = 50,
@@ -86,6 +87,7 @@ scatter.smooth(kobe$Assists, kobe$Margin,
 ![](kobe_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
+# Correlation 
 cor(kobe$Assists, kobe$Margin)
 ```
 
@@ -94,6 +96,8 @@ cor(kobe$Assists, kobe$Margin)
 There does seem to be a slight relationship between the Bryant's assists and margin of victory. The purple circles represent a margin of victory that is greater than zero and the black circles represent a margin of victory that is less than zero. After seeing a correlation of .15 between assists and margin of victory, we can conclude that increased assists had a marginal effect on the margin of victory.
 
 ``` r
+# Finding Average Margin of Victory by Assist Total
+
 zero_assist <- kobe[kobe$Assists == 0,]
 zero <- sum(zero_assist$Margin)/ nrow(zero_assist)
 
@@ -142,6 +146,7 @@ fourteen <- sum(fourteen_assist$Margin)/ nrow(fourteen_assist)
 fifteen_assist <- kobe[kobe$Assists == 15,]
 fifteen <- sum(fifteen_assist$Margin)/ nrow(fifteen_assist)
 
+# Plotting Average Margin of Vicotry by specific Assist Total
 B <- c(zero, one, two, three, four, five, six, seven, eight,
        nine, ten, eleven, twelve, thirteen, fourteen, fifteen)
 
@@ -160,6 +165,7 @@ Although there is a rather weak correlation between assists and margin of victor
 ## Analyzing Shots Taken vs. Margin of Victory 
 
 ``` r
+# Scatter Plot
 scatter.smooth(kobe$Shots.Taken, kobe$Margin,
                main = "Margin of Victory vs Assist Total",
                evaluation = 50,
@@ -170,6 +176,7 @@ scatter.smooth(kobe$Shots.Taken, kobe$Margin,
 ![](kobe_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ``` r
+# Correlation
 cor(kobe$Shots.Taken, kobe$Margin)
 ```
 
@@ -178,7 +185,8 @@ cor(kobe$Shots.Taken, kobe$Margin)
 Similarly to our previous comparison, there does seem to be a slight relationship between the Bryant's shots taken and margin of victory. The purple circles represent a margin of victory that is greater than zero and the black circles represent a margin of victory that is less than zero. After seeing a correlation of -.15 between shots taken and margin of victory, we can also conclude that increased shots taken had a marginal effect on the margin of victory.
 
 ``` r
-# Average Margin of Victory By Shots Taken
+# Finding Average Margin of Victory By Shots Taken
+
 shots_10_14 <- kobe[kobe$`Shots.Taken` >= 10 & kobe$`Shots.Taken` <= 14 ,]
 marg_shots_10_14 <- sum(shots_10_14$Margin)/ nrow(shots_10_14)
 
@@ -203,6 +211,7 @@ marg_shots_40_44 <- sum(shots_40_44$Margin)/ nrow(shots_40_44)
 shots_45_50 <- kobe[kobe$`Shots.Taken` >= 45 & kobe$`Shots.Taken` <= 50 ,]
 marg_shots_45_50 <- sum(shots_45_50$Margin)/ nrow(shots_45_50)
 
+# Plot Average Margin of Victory by Shots Taken
 C <- c(marg_shots_10_14, 
        marg_shots_15_19, marg_shots_20_24, marg_shots_25_29,
        marg_shots_30_34, marg_shots_35_39, marg_shots_40_44,
@@ -223,11 +232,12 @@ Despite a low correlation between shots taken and margin of victory, we can stil
 ## Linear Model 
 
 ``` r
+
 #GLM With Center
 kobe$`Shots.Taken Centered` <- kobe$`Shots.Taken`-mean(kobe$`Shots.Taken`)
 kobe$Assists_c <- kobe$Assists - mean(kobe$Assists)
 
-
+# Linear Model
 myglm <- lm(kobe$Margin ~ kobe$Assists_c*kobe$`Shots.Taken Centered`)
 summary(myglm)
 ```
@@ -259,6 +269,7 @@ summary(myglm)
     ## F-statistic: 20.26 on 3 and 1234 DF,  p-value: 8.093e-13
 
 ``` r
+# Plotting Interaction Plot 
 low.assists <- kobe[kobe$Assists<= 5,]
 high.assists <- kobe[kobe$Assists > 5 & kobe$Assists > 5,]
 
