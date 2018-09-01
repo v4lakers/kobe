@@ -13,7 +13,7 @@ library(ggplot2)
 ```
 
 ## Initial Data Exploration
-#### Response Variable: Margin of Victory 
+### Response Variable: Margin of Victory 
 
 ``` r
 # Upload Data
@@ -36,7 +36,7 @@ paste("Mean:",round(mean(kobe$Margin), digits = 3),"SD:",round(sd(kobe$Margin), 
 The distribution of the response variable (margin of victory per game), follows an approximately normal distribution so there was no need for a transformation. Since the distribution is normal roughly symmetric, we will use the mean of ~2.8 points and the standard deviation of ~13 points as the appropriate statistics to describe the distribution.
 
 
-#### Explanatory Variable: Assists
+### Explanatory Variable: Assists
 ``` r
 # Histogram of Bryant's Assists per game
 hist(kobe$Assists,xlab = "Assists",  
@@ -55,7 +55,7 @@ paste("Median:",round(median(kobe$Assists), digits = 3),"IQR:",round(IQR(kobe$As
 The marginal distribution of the first explanatory variable, assists Kobe had per game, followed a normal distribution that was skewed right. The statistics used to describe this distribution is a median of 5 assists and an IQR of 4 assists.
 
 
-#### Explanatory Variable: Shots Taken
+### Explanatory Variable: Shots Taken
 ``` r
 # Histogram of Bryant's Shots.Taken per game
 hist(kobe$Shots.Taken, n=30, xlab = "Shots.Taken", 
@@ -218,7 +218,7 @@ barplot(C, main = "Average Margin of Victory by Shots Taken",
 ![](kobe_files/figure-markdown_github/unnamed-chunk-8-1.png) 
 Despite a low correlation between shots taken and margin of victory, we can still assess how the team faired by specific shooting output. In this barchart, bars in green represent a positve margin of victory while red bars represent a negative margin of victory. Furthermore, I decided to exclude games where bryant shot less than 10 shots. This is due to the scarcity of data for less than 10 shots taken. From this visualization, Bryant experienced a significant margin of victory when he shot between 10-19 shots. Furthermore, the range of 15-19 shots taken had the greatest margin of victory which was roughly 5. This chart also shows a tapering off in margin of victory as Bryant attempts more than 20 shots.
 
-# Linear Model 
+## Linear Model 
 
 ``` r
 #GLM With Center
@@ -275,5 +275,5 @@ legend("bottomright", title = "Assists", c("0-5 Assists", "6-10 Assists"),
 ```
 
 ![](kobe_files/figure-markdown_github/unnamed-chunk-9-1.png) 
-# Conclusion
+## Conclusion
 From our general linear model, the two explanatory variables (assists and shots taken) were significant in predicting margin of victory. However, an R squared of 4% raises some red flags. This small R squared implies that there are other factors that play a role in the margin of victory. After all, basketball is a team sport. Looking at purely 2 variables of one player does not tell the whole story. Despite this, our analysis on margin of victory by levels of assists and shots taken implies that Bryant experienced a higher margin of victory when he took 15-20 shots and attained 6-8 assists. Furthermore, there does seem to be an intereaction between assists and shots taken. This makes sense because in games where Bryant takes too many shots, his assists are bound to be lower. A confounding variable could be the presence or lack of better teammates. Kobe had a higher win percentage when he played with Hall of Fame players Shaquille O' Neal and Pau Gasol and a lower win percentage without them which affects the response variable: margin of victory. Future research efforts will aim to find the other explanatory variables that justify variation in margin of victory and take into account periods where Bryant played with better teammates. Bottom Line: looking at soley Bryant's assists and shots taken a game does not accuratley assess if his ball dominat play style hurt the Lakers. However, the team averaged the highest average margin of victory when he had 6-8 assists and attempted 15-19 shots per game.
