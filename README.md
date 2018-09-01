@@ -154,6 +154,7 @@ barplot(B, main = "Margin of Victory by Assist Total",
 ```
 
 ![](kobe_files/figure-markdown_github/unnamed-chunk-6-1.png) 
+
 Although there is a rather weak correlation between assists and margin of victory, we can still explore varying levels of assists. In the bar plot above, bars shaded purple represent and average margin of victory greater than 4 by assist. It looks like Bryant enjoyed the greatest margin of victory in games where he had between 6-8 assists.
 
 ## Analyzing Shots Taken vs. Margin of Victory 
@@ -216,6 +217,7 @@ barplot(C, main = "Average Margin of Victory by Shots Taken",
 ```
 
 ![](kobe_files/figure-markdown_github/unnamed-chunk-8-1.png) 
+
 Despite a low correlation between shots taken and margin of victory, we can still assess how the team faired by specific shooting output. In this barchart, bars in green represent a positve margin of victory while red bars represent a negative margin of victory. Furthermore, I decided to exclude games where bryant shot less than 10 shots. This is due to the scarcity of data for less than 10 shots taken. From this visualization, Bryant experienced a significant margin of victory when he shot between 10-19 shots. Furthermore, the range of 15-19 shots taken had the greatest margin of victory which was roughly 5. This chart also shows a tapering off in margin of victory as Bryant attempts more than 20 shots.
 
 ## Linear Model 
