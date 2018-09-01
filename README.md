@@ -3,6 +3,8 @@ Kobe
 
 Kobe Bryant is a retired NBA legend who has had one of the most decorated careers of all time. However, sports pundits have criticized Bryant of taking too many shots and not passing the ball enough. The goal of this study is to discern a relationship, if any, between Kobe Bryant’s ball dominant play style and the team’s margin of victory.
 
+My sample of 1238 games comes from all the games Kobe has played with the exception of games from the 96'-98' season and games Kobe left early due to injury. Kobe was not a key part of the team during his first couple years in the league so these statistics, along with the incomplete games, would not help in understanding if his ball dominant play style was beneficial or not. The source of this data comes from a verified basketball statistics website: BasketballReference.com. The response variable is margin of victory (in points) of the game Kobe played. The two explanatory variables are the amount of assists Kobe attained and the amount of shots Kobe took per game. The csv used in this project is in the current working directory and is called "kobe.csv"
+
 ``` r
 # Load Packages
 knitr::opts_chunk$set(echo = TRUE)
@@ -13,18 +15,7 @@ library(car)
 
 ``` r
 library(ggplot2)
-library(shiny)
-library(rsconnect)
 ```
-
-    ## Warning: package 'rsconnect' was built under R version 3.4.4
-
-    ## 
-    ## Attaching package: 'rsconnect'
-
-    ## The following object is masked from 'package:shiny':
-    ## 
-    ##     serverInfo
 
 ``` r
 # Upload Data
@@ -151,14 +142,14 @@ B <- c(zero, one, two, three, four, five, six, seven, eight,
        nine, ten, eleven, twelve, thirteen, fourteen, fifteen)
 
 barplot(B, main = "Margin of Victory by Assist Total",
-        xlab = "Assist", ylab = "Margin of Victory",
+        xlab = "Assist", ylab = "Average Margin of Victory",
         ylim=c(-5,10), xlim = c(0,20)
         , names.arg=c("0","1","2","3","4","5","6",
                        "7","8","9","10","11","12","13",
                        "14", "15"), cex.names=.5, col=ifelse(B>4,"purple","grey"))
 ```
 
-![](kobe_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](kobe_files/figure-markdown_github/unnamed-chunk-6-1.png) Although there is a rather weak correlation between assists and margin of victory, we can still explore varying levels of assists. In the bar plot above, bars shaded purple represent and average margin of victory greater than 4 by assist. It looks like Bryant enjoyed the greatest margin of victory in games where he had between 6-8 assists.
 
 ``` r
 scatter.smooth(kobe$Shots.Taken, kobe$Margin,
@@ -175,6 +166,8 @@ cor(kobe$Shots.Taken, kobe$Margin)
 ```
 
     ## [1] -0.1534914
+
+Similarly to our previous comparison, there does seem to be a slight relationship between the Bryant's shots taken and margin of victory. The purple circles represent a margin of victory that is greater than zero and the black circles represent a margin of victory that is less than zero. After seeing a correlation of -.15 between shots taken and margin of victory, we can also conclude that increased shots taken had a marginal effect on the margin of victory.
 
 ``` r
 # Average Margin of Victory By Shots Taken
@@ -207,7 +200,7 @@ C <- c(marg_shots_10_14,
        marg_shots_30_34, marg_shots_35_39, marg_shots_40_44,
        marg_shots_45_50)
 
-barplot(C, main = "Margin of Victory by Shots.Taken",
+barplot(C, main = "Average Margin of Victory by Shots Taken",
         xlab = "Shots.Taken", ylab = "Margin of Victory",
         ylim=c(-2,8), xlim = c(0,11),
         names.arg=c("10-14", "15-19", "20-24",
@@ -215,7 +208,7 @@ barplot(C, main = "Margin of Victory by Shots.Taken",
         cex.names=.5, col=ifelse(C>0,"green","red"))
 ```
 
-![](kobe_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](kobe_files/figure-markdown_github/unnamed-chunk-8-1.png) Despite a low correlation between shots taken and margin of victory, we can still assess how the team faired by specific shooting output. In this barchart, bars in green represent a positve margin of victory while red bars represent a negative margin of victory. Furthermore, I decided to exclude games where bryant shot less than 10 shots. This is due to the scarcity of data for less than 10 shots taken. From this visualization, Bryant experienced a significant margin of victory when he shot between 10-19 shots. Furthermore, the range of 15-19 shots taken had the greatest margin of victory which was roughly 5. This chart also shows a tapering off in margin of victory as Bryant attempts more than 20 shots.
 
 ``` r
 #GLM With Center
@@ -271,4 +264,4 @@ legend("bottomright", title = "Assists", c("0-5 Assists", "6-10 Assists"),
        col = c("blue", "red"), pch = c(17, 18), lty = c(2, 1), inset = 0.01)
 ```
 
-![](kobe_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](kobe_files/figure-markdown_github/unnamed-chunk-9-1.png) From our general linear model, the two explanatory variables (assists and shots taken) were significant in predicting margin of victory. However, an R squared of 4% raises some red flags. This small R squared implies that there are other factors that play a role in the margin of victory. After all, basketball is a team sport. Looking at purely 2 variables of one player does not tell the whole story. Despite this, our analysis on margin of victory by levels of assists and shots taken implies that Bryant experienced a higher margin of victory when he took 15-20 shots and attained 6-8 assists. Furthermore, there does seem to be an intereaction between assists and shots taken. This makes sense because in games where Bryant takes too many shots, his assists are bound to be lower. A confounding variable could be the presence or lack of better teammates. Kobe had a higher win percentage when he played with Hall of Fame players Shaquille O' Neal and Pau Gasol and a lower win percentage without them which affects the response variable: margin of victory. Future research efforts will aim to find the other explanatory variables that justify variation in margin of victory and take into account periods where Bryant played with better teammates. Bottom Line: looking at soley Bryant's assists and shots taken a game does not accuratley assess if his ball dominat play style hurt the Lakers. However, the team averaged the highest average margin of victory when he had 6-8 assists and attempted 15-19 shots per game.
