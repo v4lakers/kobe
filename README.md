@@ -1,4 +1,4 @@
-Kobe
+To Pass or Not To Pass: The Tale of Kobe Bryant
 ================
 
 Kobe Bryant is a retired NBA legend who has had one of the most decorated careers of all time. However, sports pundits have criticized Bryant of taking too many shots and not passing the ball enough. The goal of this study is to discern a relationship, if any, between Kobe Bryant’s ball dominant play style and the team’s margin of victory.
@@ -9,11 +9,6 @@ My sample of 1238 games comes from all the games Kobe has played with the except
 # Load Packages
 knitr::opts_chunk$set(echo = TRUE)
 library(car)
-```
-
-    ## Warning: package 'car' was built under R version 3.4.3
-
-``` r
 library(ggplot2)
 ```
 
