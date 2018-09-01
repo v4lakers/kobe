@@ -12,8 +12,8 @@ library(car)
 library(ggplot2)
 ```
 
-# Initial Data Exploration
-### Response Variable: Margin of Victory 
+## Initial Data Exploration
+#### Response Variable: Margin of Victory 
 
 ``` r
 # Upload Data
