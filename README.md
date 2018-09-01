@@ -1,4 +1,4 @@
-To Pass or Not To Pass: The Tale of Kobe Bryant
+# To Pass or Not To Pass: The Tale of Kobe Bryant
 ================
 
 Kobe Bryant is a retired NBA legend who has had one of the most decorated careers of all time. However, sports pundits have criticized Bryant of taking too many shots and not passing the ball enough. The goal of this study is to discern a relationship, if any, between Kobe Bryant’s ball dominant play style and the team’s margin of victory.
@@ -36,7 +36,7 @@ paste("Mean:",round(mean(kobe$Margin), digits = 3),"SD:",round(sd(kobe$Margin), 
 The distribution of the response variable (margin of victory per game), follows an approximately normal distribution so there was no need for a transformation. Since the distribution is normal roughly symmetric, we will use the mean of ~2.8 points and the standard deviation of ~13 points as the appropriate statistics to describe the distribution.
 
 
-### Explanatory Variable: Assists
+#### Explanatory Variable: Assists
 ``` r
 # Histogram of Bryant's Assists per game
 hist(kobe$Assists,xlab = "Assists",  
@@ -55,7 +55,7 @@ paste("Median:",round(median(kobe$Assists), digits = 3),"IQR:",round(IQR(kobe$As
 The marginal distribution of the first explanatory variable, assists Kobe had per game, followed a normal distribution that was skewed right. The statistics used to describe this distribution is a median of 5 assists and an IQR of 4 assists.
 
 
-### Explanatory Variable: Shots Taken
+#### Explanatory Variable: Shots Taken
 ``` r
 # Histogram of Bryant's Shots.Taken per game
 hist(kobe$Shots.Taken, n=30, xlab = "Shots.Taken", 
@@ -73,7 +73,7 @@ paste("Mean:",round(mean(kobe$Shots.Taken), digits = 3),"SD:",round(sd(kobe$Shot
 
 The marginal distribution of the second explanatory variable, shots taken by Kobe a game, followed a symmetric and normal distribution. The descriptive statistics used to describe this distribution is a mean of 21.01 shots and a standard deviation of 6.39 shots.
 
-# Analyzing Assists vs. Margin of Victory 
+## Analyzing Assists vs. Margin of Victory 
 
 ``` r
 scatter.smooth(kobe$Assists, kobe$Margin,
@@ -155,7 +155,7 @@ barplot(B, main = "Margin of Victory by Assist Total",
 
 ![](kobe_files/figure-markdown_github/unnamed-chunk-6-1.png) Although there is a rather weak correlation between assists and margin of victory, we can still explore varying levels of assists. In the bar plot above, bars shaded purple represent and average margin of victory greater than 4 by assist. It looks like Bryant enjoyed the greatest margin of victory in games where he had between 6-8 assists.
 
-# Analyzing Shots Taken vs. Margin of Victory 
+## Analyzing Shots Taken vs. Margin of Victory 
 
 ``` r
 scatter.smooth(kobe$Shots.Taken, kobe$Margin,
